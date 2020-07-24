@@ -1,0 +1,3 @@
+[submodule "Tech_News_Blog_Flask"]
+	path = Tech_News_Blog_Flask
+	url = https://github.com/dilipksahu/Data_Science_Projects.git
