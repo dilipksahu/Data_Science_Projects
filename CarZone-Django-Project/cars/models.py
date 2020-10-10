@@ -92,7 +92,6 @@ class Car(models.Model):
     city = models.CharField(max_length=255)
     state = models.CharField(choices=state_choice,max_length=100)
     color = models.CharField(max_length=100)
-    car_title = models.CharField(max_length=100)
     model = models.CharField(max_length=100)
     year = models.IntegerField(('year'),choices=year_choice)
     condition = models.CharField(max_length=100)
@@ -117,3 +116,6 @@ class Car(models.Model):
     no_of_owners = models.IntegerField()
     is_featured = models.BooleanField(default=False)
     created_date = models.DateTimeField(default=datetime.now(),blank=True)
+
+    def __str__(self):
+        return self.car_title
