@@ -8,8 +8,17 @@ def cars(request):
     paginator = Paginator(cars, 4)
     page = request.GET.get('page')
     paged_cars = paginator.get_page(page)
+
+    model_search = Car.objects.values_list('model',flat=True).distinct()
+    city_search = Car.objects.values_list('city',flat=True).distinct()
+    year_search = Car.objects.values_list('year',flat=True).distinct()
+    body_style_search = Car.objects.values_list('body_style',flat=True).distinct()
     data = {
      'cars':paged_cars,
+     'model_search':model_search,
+     'city_search':city_search,
+     'year_search':year_search,
+     'body_style_search':body_style_search,
     }
     return render(request,'cars/cars.html',data)
 
@@ -22,16 +31,61 @@ def car_detail(request,id):
 
 def search(request):
     cars = Car.objects.order_by('-created_date')
-    if 'keyword' in request.GET:
-        keyword = request.GET['keyword']   # Storing website url keyword value on variable
+    model_search = Car.objects.values_list('model',flat=True).distinct()
+    city_search = Car.objects.values_list('city',flat=True).distinct()
+    year_search = Car.objects.values_list('year',flat=True).distinct()
+    body_style_search = Car.objects.values_list('body_style',flat=True).distinct()
+    transmission_search = Car.objects.values_list('transmission',flat=True).distinct()
+    color_search = Car.objects.values_list('color',flat=True).distinct()
+
+    if 'keyword' in request.GET:           # keyword in url path
+        keyword = request.GET['keyword']   # extract keyword value and store in variable keyword
         if keyword:
-            cars = cars.filter(description__icontains=keyword)  # check in car description
+            cars = cars.filter(description__icontains=keyword)  # check in car description and overide varible cars
 
     if 'model' in request.GET:
         model = request.GET['model']
         if model:
             cars = cars.filter(model__iexact=model)
+
+    if 'city' in request.GET:
+        city = request.GET['city']
+        if city:
+            cars = cars.filter(city__iexact=city)
+
+    if 'year' in request.GET:
+        year = request.GET['year']
+        if year:
+            cars = cars.filter(year__iexact=year)
+
+    if 'body_style' in request.GET:
+        body_style = request.GET['body_style']
+        if body_style:
+            cars = cars.filter(body_style__iexact=body_style)
+
+    if 'min_price' in request.GET:
+        min_price = request.GET['min_price']
+        max_price = request.GET['max_price']
+        if max_price:
+            cars = cars.filter(price__gte=min_price,price__lte=max_price)
+
+    if 'color' in request.GET:
+        color = request.GET['color']
+        if color:
+            cars = cars.filter(color__iexact=color)
+
+    if 'transmission' in request.GET:
+        transmission = request.GET['transmission']
+        if transmission:
+            cars = cars.filter(transmission__iexact=transmission)
+
     data = {
-        'cars':cars
+        'cars':cars,
+        'model_search':model_search,
+        'city_search':city_search,
+        'year_search':year_search,
+        'body_style_search':body_style_search,
+        'transmission_search':transmission_search,
+        'color_search':color_search,
     }
     return render(request,'cars/search.html',data)
