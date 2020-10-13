@@ -7,66 +7,21 @@
             <img src="{% static 'img/lines.svg' %}" class="img-lines" alt="lines">
         </div>
         <div class="row">
+            {% for skill in skills %}
             <div class="col-md-4">
                 <div class="skill">
-                    <h4>Html/css</h4>
+                    <h4>{{skill.skill}}</h4>
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" data-transitiongoal="100"></div>
+                        <div class="progress-bar" role="progressbar" data-transitiongoal="{{skill.percent}}"></div>
                         <!-- /.progress-bar -->
                     </div>
                     <!-- /.progress -->
                 </div>
-                <!-- /.skill -->
-                <div class="skill">
-                    <h4>Python</h4>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" data-transitiongoal="75"></div>
-                        <!-- /.progress-bar -->
-                    </div>
-                    <!-- /.progress -->
-                </div>
-                <!-- /.skill -->
+                <br><br>
+
             </div>
-            <div class="col-md-4">
-                <div class="skill">
-                    <h4>Javascript</h4>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" data-transitiongoal="82"></div>
-                        <!-- /.progress-bar -->
-                    </div>
-                    <!-- /.progress -->
-                </div>
-                <!-- /.skill -->
-                <div class="skill">
-                    <h4>Ruby</h4>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" data-transitiongoal="66"></div>
-                        <!-- /.progress-bar -->
-                    </div>
-                    <!-- /.progress -->
-                </div>
-                <!-- /.skill -->
-            </div>
-            <div class="col-md-4">
-                <div class="skill">
-                    <h4>Php</h4>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" data-transitiongoal="97"></div>
-                        <!-- /.progress-bar -->
-                    </div>
-                    <!-- /.progress -->
-                </div>
-                <!-- /.skill -->
-                <div class="skill">
-                    <h4>Java</h4>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" data-transitiongoal="45"></div>
-                        <!-- /.progress-bar -->
-                    </div>
-                    <!-- /.progress -->
-                </div>
-                <!-- /.skill -->
-            </div>
+            {% endfor %}
+
         </div>
     </div>
 </section>
