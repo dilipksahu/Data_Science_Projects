@@ -1,11 +1,11 @@
-{% load static %}
-
-
+ {% load static %}
 <div id="hero" class="hero">
     <div class="container">
+
         <div class="row">
 
             <div class="col-md-6">
+
                 <h1>Dilip Sahu</h1>
                 <div class="page-scroll">
                     <p class="job-title">Python Developer | Data Scientist</p>
@@ -13,6 +13,19 @@
                     <div class="clearfix visible-xxs"></div>
                     <a href="#portfolio" class="btn btn-border">Explore more</a>
                 </div>
+                <br><br>
+                <div id="message">
+                    {% if messages %}
+                    <div style="border:2px solid black; padding: 10px;
+                        border-radius: 25px;">
+                        <span style="font-size: 20px; font-weight: 675;  ">{% include 'includes/messages.html' %}</span>
+                    </div>
+                    <!-- messages -->
+                    {% endif %}
+
+                </div>
+
+
             </div>
 
             <div class="col-md-6 text-right">
@@ -20,5 +33,6 @@
             </div>
 
         </div>
+
     </div>
 </div>
